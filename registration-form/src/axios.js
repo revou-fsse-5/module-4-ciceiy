@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "https://module-4-ciceiy.netlify.app/";
+const apiUrl = "https://module-4-ciceiy.netlify.app/api/";
 
 const instance = axios.create({
   baseURL: apiUrl,

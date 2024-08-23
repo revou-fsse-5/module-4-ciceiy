@@ -1,12 +1,12 @@
 [[redirects]]
 from = "/categories/*"
-to = "http://localhost:3001/categories/"
+to = "http://localhost:3001/categories/api/:splat"
 status = 200
 force = true
 
 [[redirects]]
 from = "/login/*"
-to = "http://localhost:3001/login/"
+to = "http://localhost:3001/login/api/:splat"
 status = 200
 force = true
 
