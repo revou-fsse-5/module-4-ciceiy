@@ -10,9 +10,7 @@ function Register() {
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   const handleRegister = async (event) => {
@@ -20,10 +18,8 @@ function Register() {
 
     try {
       await validationSchema.validate({ username, password });
-      const response = await axios.post("http://localhost:3001/users", {
-        username,
-        password,
-      });
+
+      await axios.post("http://localhost:3001/users", { username, password });
 
       alert("Registration successful!");
       navigate("/login");
@@ -91,17 +87,6 @@ function Register() {
             Register
           </button>
         </form>
-        <div className="text-center mb-5">
-          <p className="text-gray-700">
-            Already have an account?{" "}
-            <button
-              onClick={() => navigate("/login")}
-              className="text-blue-500 hover:underline"
-            >
-              Log in
-            </button>
-          </p>
-        </div>
       </div>
     </div>
   );
