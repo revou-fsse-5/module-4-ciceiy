@@ -15,7 +15,7 @@ const CategoryPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const apiUrl = "https://module-4-ciceiy.netlify.app/api/";
+  const apiUrl = "https://module-4-ciceiy.netlify.app/";
 
   useEffect(() => {
     axios

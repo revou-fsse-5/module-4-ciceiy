@@ -13,7 +13,7 @@ function Login() {
     password: Yup.string().required("Password is required"),
   });
 
-  const apiUrl = "https://module-4-ciceiy.netlify.app/api/";
+  const apiUrl = "https://module-4-ciceiy.netlify.app/";
 
   const handleLogin = async (event) => {
     event.preventDefault();
