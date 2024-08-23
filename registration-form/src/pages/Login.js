@@ -13,14 +13,15 @@ function Login() {
     password: Yup.string().required("Password is required"),
   });
 
+  const apiUrl =
+    "https://66c8bfe0d921d3da127a806f--module-4-ciceiy.netlify.app";
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
       await validationSchema.validate({ username, password });
-      const response = await axios.get(
-        `http://localhost:3001/users?username=${username}`
-      );
+      const response = await axios.get(`${apiUrl}/users?username=${username}`);
       const users = response.data;
 
       if (users.length === 0) {

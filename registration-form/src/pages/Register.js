@@ -31,6 +31,9 @@ function Register() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
+  const apiUrl =
+    "https://66c8bfe0d921d3da127a806f--module-4-ciceiy.netlify.app";
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prevData) => ({
@@ -75,7 +78,7 @@ function Register() {
       validationSchema.validateSyncAt("username", form);
       validationSchema.validateSyncAt("password", form);
 
-      const response = await axios.post("http://localhost:3001/users", form);
+      const response = await axios.post("${apiUrl}/users", form);
       handleResponse(response);
       alert("Registration successful! Redirecting to login...");
       setForm({
