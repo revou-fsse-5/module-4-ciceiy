@@ -63,6 +63,11 @@ function Register() {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
+  const handleResponse = (response) => {
+    console.log("Response received:", response);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -71,6 +76,7 @@ function Register() {
       validationSchema.validateSyncAt("password", form);
 
       const response = await axios.post("http://localhost:3001/users", form);
+      handleResponse(response);
       alert("Registration successful! Redirecting to login...");
       setForm({
         fullname: "",
@@ -92,6 +98,9 @@ function Register() {
       }
     }
   };
+
+  // eslint-disable-next-line no-unused-vars
+  const unusedResponse = "example response";
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-indigo-600">

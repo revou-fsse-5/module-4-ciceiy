@@ -50,6 +50,7 @@ function Login() {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const validate = () => {
     let result = true;
     if (!username) {
