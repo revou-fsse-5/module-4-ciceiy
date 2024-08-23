@@ -78,7 +78,7 @@ function Register() {
       validationSchema.validateSyncAt("username", form);
       validationSchema.validateSyncAt("password", form);
 
-      const response = await axios.post("${apiUrl}/users", form);
+      const response = await axios.post(apiUrl + "/users", form);
       handleResponse(response);
       alert("Registration successful! Redirecting to login...");
       setForm({

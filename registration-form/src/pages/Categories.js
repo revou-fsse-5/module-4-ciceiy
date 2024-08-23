@@ -20,7 +20,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     axios
-      .get("${apiUrl}/categories")
+      .get(apiUrl + "/categories")
       .then((response) => {
         setCategories(response.data);
       })
@@ -31,7 +31,7 @@ const CategoryPage = () => {
 
   const handleCreateNew = (category) => {
     axios
-      .post("${apiUrl}/categories", category)
+      .post(apiUrl + "/categories", category)
       .then((response) => {
         setCategories([...categories, response.data]);
         setIsTambahModalOpen(false);

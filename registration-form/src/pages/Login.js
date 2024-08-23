@@ -21,7 +21,9 @@ function Login() {
 
     try {
       await validationSchema.validate({ username, password });
-      const response = await axios.get(`${apiUrl}/users?username=${username}`);
+      const response = await axios.get(
+        apiUrl + "/users?username=" + encodeURIComponent(username)
+      );
       const users = response.data;
 
       if (users.length === 0) {
