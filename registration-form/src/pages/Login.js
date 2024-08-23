@@ -32,7 +32,6 @@ function Login() {
           localStorage.setItem("user", JSON.stringify(user));
 
           const accessToken = "fakeAccessTokenForDemo";
-
           localStorage.setItem("accessToken", accessToken);
 
           navigate("/categories");
@@ -40,27 +39,14 @@ function Login() {
           alert("Invalid password!");
         }
       }
-    } catch (error) {
-      if (error.name === "ValidationError") {
-        alert(error.message);
+    } catch (err) {
+      if (err.name === "ValidationError") {
+        alert(err.message);
       } else {
-        console.error("Login Failed due to:", error);
-        alert("Error: " + error.message);
+        console.error("Login Failed due to:", err);
+        alert("Error: " + err.message);
       }
     }
-  };
-
-  const validate = () => {
-    let result = true;
-    if (!username) {
-      result = false;
-      alert("Please enter username");
-    }
-    if (!password) {
-      result = false;
-      alert("Please enter password");
-    }
-    return result;
   };
 
   const handleChange = (event) => {
@@ -73,13 +59,10 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-indigo-600">
-      <h1 className="text-4xl text-white mb-6 mt-4">
-        TaskMaster: Your Ultimate Online Task List
-      </h1>
+    <div className="flex justify-center items-center h-screen bg-indigo-600">
       <div className="w-96 px-6 py-2 shadow-lg bg-white rounded-md">
-        <h1 className="text-2xl text-center mt-3 text-gray-700">Log in</h1>
-        <div className="w-15 h-1/8 mt-3 mb-2 bg-gray-700 border"></div>
+        <h1 className="text-2xl text-center mt-3 text-gray-700">Login</h1>
+        <div className="w-15 h-1/2 mt-3 mb-2 bg-gray-700 border"></div>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
@@ -115,17 +98,20 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white rounded p-2 mt-1 mb-5"
+            className="w-full bg-blue-500 text-white rounded p-2 mt-1 mb-2"
           >
             Login
           </button>
         </form>
-        <div className="text-center mt-1 mb-5">
+        <div className="text-center mb-5">
           <p className="text-gray-700">
             Don't have an account?{" "}
-            <a href="/" className="text-blue-500 hover:underline">
+            <button
+              onClick={() => navigate("/register")}
+              className="text-blue-500 hover:underline"
+            >
               Register
-            </a>
+            </button>
           </p>
         </div>
       </div>
