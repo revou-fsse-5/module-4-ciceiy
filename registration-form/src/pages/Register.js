@@ -31,8 +31,7 @@ function Register() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  const apiUrl =
-    "https://66c8bfe0d921d3da127a806f--module-4-ciceiy.netlify.app";
+  const apiUrl = "https://module-4-ciceiy.netlify.app/";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
