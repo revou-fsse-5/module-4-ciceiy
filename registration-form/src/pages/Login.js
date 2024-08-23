@@ -122,7 +122,7 @@ function Login() {
         </form>
         <div className="text-center mt-1 mb-5">
           <p className="text-gray-700">
-            Don't have an account?{" "}
+            Don&#39;t have an account?{" "}
             <a href="/" className="text-blue-500 hover:underline">
               Register
             </a>
