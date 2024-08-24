@@ -45,8 +45,7 @@ After successful login, you can navigate to the Category page where you can add,
 
 ### 5. Access Application
 
-- Open browser and visit http://localhost:3000 to access the react application.
-- A small trivia, JSON Server and React Server are run in a different server. For JSON, I use 3001, and for React will be automatically start in 3000. It's important to make the JSON run!
+- Open browser and visit your local host to access the react application.
 
 ## Technologies Used
 
