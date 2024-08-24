@@ -1,10 +1,4 @@
 [[redirects]]
-from = "/api/*"
-to = "http://localhost:3001/users/:splat"
-status = 200
-force = true
-
-[[redirects]]
 from = "https://module-4-ciceiy.netlify.app/categories/*"
 to = "http://localhost:3001/categories/:splat"
 status = 200

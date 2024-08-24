@@ -15,11 +15,11 @@ const CategoryPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const apiUrl = "http://localhost:3001/";
+  const apiUrl = "http://localhost:8080/";
 
   useEffect(() => {
     axios
-      .get(apiUrl + "/categories")
+      .get(apiUrl + "categories")
       .then((response) => {
         setCategories(response.data);
       })
@@ -30,7 +30,7 @@ const CategoryPage = () => {
 
   const handleCreateNew = (category) => {
     axios
-      .post(apiUrl + "/categories", category)
+      .post(apiUrl + "categories", category)
       .then((response) => {
         setCategories([...categories, response.data]);
         setIsTambahModalOpen(false);
@@ -42,7 +42,7 @@ const CategoryPage = () => {
 
   const handleEdit = (category) => {
     axios
-      .put(`${apiUrl}/categories/${category.id}`, category)
+      .put(`${apiUrl}categories/${category.id}`, category)
       .then(() => {
         setCategories(
           categories.map((cat) => (cat.id === category.id ? category : cat))
@@ -67,7 +67,7 @@ const CategoryPage = () => {
   const handleConfirmDelete = () => {
     const { id } = selectedCategory;
     axios
-      .delete(`${apiUrl}/categories/${id}`)
+      .delete(`${apiUrl}categories/${id}`)
       .then(() => {
         setCategories(categories.filter((category) => category.id !== id));
         console.log(`Deleted category with id: ${id}`);

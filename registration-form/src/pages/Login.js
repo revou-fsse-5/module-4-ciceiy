@@ -4,49 +4,50 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
 
-  const apiUrl = "http://localhost:3001/";
+  const apiUrl = "http://localhost:8080/";
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      await validationSchema.validate({ username, password });
-      const response = await axios.get(
-        apiUrl + "/users?username=" + encodeURIComponent(username)
-      );
-      const users = response.data;
+      const email = event.target.email.value;
+      const password = event.target.password.value;
 
-      if (users.length === 0) {
-        alert("Username not found!");
+      await validationSchema.validate({ email, password });
+
+      const response = await axios.post(apiUrl + "login", {
+        email,
+        password,
+      });
+
+      const { user, accessToken } = response.data;
+      console.log({ user });
+
+      if (!user) {
+        alert("Email tidak ditemukan!");
       } else {
-        const user = users.find((user) => user.password === password);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem(
+          "accessToken",
+          accessToken || "fakeAccessTokenForDemo"
+        );
 
-        if (user) {
-          localStorage.setItem("user", JSON.stringify(user));
-
-          const accessToken = "fakeAccessTokenForDemo";
-
-          localStorage.setItem("accessToken", accessToken);
-
-          navigate("/categories");
-        } else {
-          alert("Invalid password!");
-        }
+        navigate("/categories");
       }
     } catch (error) {
       if (error.name === "ValidationError") {
         alert(error.message);
       } else {
-        console.error("Login Failed due to:", error);
+        console.error("Login gagal karena:", error);
         alert("Error: " + error.message);
       }
     }
@@ -55,9 +56,9 @@ function Login() {
   // eslint-disable-next-line no-unused-vars
   const validate = () => {
     let result = true;
-    if (!username) {
+    if (!email) {
       result = false;
-      alert("Please enter username");
+      alert("Please enter email");
     }
     if (!password) {
       result = false;
@@ -68,8 +69,8 @@ function Login() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "username") {
-      setUsername(value);
+    if (name === "email") {
+      setEmail(value);
     } else if (name === "password") {
       setPassword(value);
     }
@@ -86,15 +87,15 @@ function Login() {
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-base mt-3 text-gray-700"
             >
-              Username
+              E-mail
             </label>
             <input
               type="text"
-              name="username"
-              value={username}
+              name="email"
+              value={email}
               onChange={handleChange}
               className="border border-gray-300 rounded w-full text-base mt-1 mb-3 p-2 focus:outline-none focus:ring-0 focus:border-gray-600"
               required

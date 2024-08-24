@@ -31,7 +31,7 @@ function Register() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  const apiUrl = "http://localhost:3001/";
+  const apiUrl = "http://localhost:8080/";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -77,7 +77,7 @@ function Register() {
       validationSchema.validateSyncAt("username", form);
       validationSchema.validateSyncAt("password", form);
 
-      const response = await axios.post(apiUrl + "/users", form);
+      const response = await axios.post(apiUrl + "register", form);
       handleResponse(response);
       alert("Registration successful! Redirecting to login...");
       setForm({
